@@ -2,12 +2,5 @@ $selector: ".UserReposList";
 
 #{$selector} {
   padding-top: $space-lg;
-
-  &__repo_card {
-    padding: $space-sm;
-    &__name {
-      margin: 0;
-      font-weight: bold;
-    }
-  }
+  padding-bottom: $space-lg;
 }

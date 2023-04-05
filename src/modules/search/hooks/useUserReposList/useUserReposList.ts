@@ -2,11 +2,9 @@ import { ListUserReposResponse } from "@/clients/octokit/types";
 import { performRequest } from "@/helpers/performRequest";
 import useSWR from "swr/immutable";
 
-const listUserRepos = async (ownerId: string) => {
-  if (!ownerId) return null;
-
+const listUserRepos = async (path: string) => {
   return await performRequest<ListUserReposResponse>({
-    path: `/api/owner/${ownerId}/repos`,
+    path: path,
   });
 };
 
@@ -16,6 +14,6 @@ type UseUserReposListHook = (query: string) => {
 };
 
 export const useUserReposList: UseUserReposListHook = (username: string) => {
-  const { data, isLoading } = useSWR(username, listUserRepos);
+  const { data, isLoading } = useSWR(`/api/owner/${username}/repos`, listUserRepos);
   return { data: data ?? [], loading: isLoading };
 };

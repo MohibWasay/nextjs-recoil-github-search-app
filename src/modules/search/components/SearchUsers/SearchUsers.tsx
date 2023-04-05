@@ -26,9 +26,9 @@ export const SearchUsers: FC = () => {
         <Button variant="primary" onClick={() => mutate()}>
           Search
         </Button>
-
-        {users.length ? <span>Showing users for {`"${query}"`}</span> : null}
       </div>
+
+      {users.length ? <span>Showing users for {`"${query}"`}</span> : null}
 
       <Collapsible>
         {users?.map(({ login }) => (

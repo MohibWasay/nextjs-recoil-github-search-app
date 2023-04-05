@@ -5,6 +5,7 @@ import { create } from "@/helpers/createBem";
 
 import styles from "./UserReposList.module.scss";
 import { RenderIf } from "@/shared/components/RenderIf/RenderIf";
+import { RepoItemCard } from "../RepoItemCard/RepoItemCard";
 
 const bem = create(styles, "UserReposList");
 
@@ -21,19 +22,12 @@ export const UserReposList: FC<UserReposList> = ({ username }) => {
 
   return (
     <div className={bem()}>
-      <RenderIf
-        fallback={
-          <span>Here is a list of {`'${username}'`}&apos;s repositories</span>
-        }
-        condition={repos?.length === 0}
-      >
+      <RenderIf condition={repos?.length === 0}>
         <span>{`'${username}'`}&apos;s has no public repositories</span>
       </RenderIf>
 
       {repos?.map?.((repo) => (
-        <Card className={bem("repo_card")} key={repo.name} variant="primary">
-          <p className={bem("repo_card__name")}>{repo.name}</p>
-        </Card>
+        <RepoItemCard key={repo.name} repo={repo} />
       ))}
     </div>
   );

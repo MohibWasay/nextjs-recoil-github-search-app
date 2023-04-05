@@ -21,9 +21,8 @@ $selector: ".Card";
       left: 0;
       z-index: -1;
 
-      @include border-with-radius(1px, $--border-primary, 6px);
+      @include border-with-radius(1px, $--border-primary, 0px);
       content: "";
-      speak: none;
     }
 
     &#{$selector}--is-selected::before {
@@ -42,7 +41,6 @@ $selector: ".Card";
       width: 5px;
       height: 100%;
       content: "";
-      speak: none;
     }
 
     &#{$selector}--is-selected::before {

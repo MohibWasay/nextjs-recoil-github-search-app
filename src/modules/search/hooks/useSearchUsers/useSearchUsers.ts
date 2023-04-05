@@ -4,22 +4,21 @@ import useDebounce from "@/shared/hooks/useDebounce";
 import { KeyedMutator } from "swr";
 import useSWR from "swr/immutable";
 
-const searchUsers = async (query: string) => {
-  if (!query) return null;
-
-  return await performRequest<SearchUserResponse>({
-    path: `/api/search/users?query=${query}`,
-  });
+const searchUsers = async (path: string) => {
+  return await performRequest<SearchUserResponse>({ path });
 };
 
 type UseSearchUsersHook = (query: string) => {
   data: SearchUserResponse["items"];
-  mutate: KeyedMutator<SearchUserResponse | null>;
+  mutate: KeyedMutator<SearchUserResponse>;
 };
 
 export const useSearchUsers: UseSearchUsersHook = (query: string) => {
   const debouncedQuery = useDebounce(query, 500);
-  const { data, mutate } = useSWR(debouncedQuery, searchUsers);
+  const { data, mutate } = useSWR(
+    debouncedQuery ? `/api/search/users?query=${debouncedQuery}` : null,
+    searchUsers,
+  );
 
   return { data: data?.items ?? [], mutate };
 };

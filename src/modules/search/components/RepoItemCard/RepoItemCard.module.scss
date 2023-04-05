@@ -1,0 +1,19 @@
+$selector: ".RepoItemCard";
+
+#{$selector} {
+  padding: $space-sm;
+  align-items: center;
+
+  &__heading {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__description {
+    font-size: 12px;
+  }
+
+  &__title {
+    font-weight: bold;
+  }
+}
