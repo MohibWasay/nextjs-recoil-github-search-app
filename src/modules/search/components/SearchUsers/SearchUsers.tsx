@@ -1,30 +1,39 @@
-import { useSearchUsers } from "@/modules/users/hooks/useSearchUsers";
+import { create } from "@/helpers/createBem";
+import { useSearchUsers } from "@/modules/search";
 import { Collapsible } from "@/shared/components/Collapsible";
 import { Input } from "@/shared/components/Input";
 import { FC, useState } from "react";
 
+import styles from "./SearchUsers.module.scss";
+
+const bem = create(styles, "SearchUsers");
+
 export const SearchUsers: FC = () => {
   const [query, setQuery] = useState("");
-  const {} = useSearchUsers(query);
+  const { data: users } = useSearchUsers(query);
 
   return (
-    <div>
-      <Input
-        name="search-users"
-        id="searchUsers"
-        placeholder="Search Users"
-        onChange={({ target: { value } }) => setQuery(value)}
-      />
+    <div className={bem()}>
+      <div className={bem("search")}>
+        <Input
+          id="searchUsers"
+          name="search-users"
+          placeholder="Search Users"
+          onChange={({ target: { value } }) => setQuery(value)}
+        />
+        {users.length ? <span>Showing users for {`"${query}"`}</span> : null}
+      </div>
+
       <Collapsible>
-        <Collapsible.Item value="1" title="Hello">
-          This is a description
-        </Collapsible.Item>
-        <Collapsible.Item value="2" title="Hello Again">
-          This is a description
-        </Collapsible.Item>
-        <Collapsible.Item value="3" title="Hello Again and Again">
-          This is a description
-        </Collapsible.Item>
+        {users?.map((user) => (
+          <Collapsible.Item
+            key={user.login}
+            value={user.login}
+            title={user.login}
+          >
+            This is a description
+          </Collapsible.Item>
+        ))}
       </Collapsible>
     </div>
   );

@@ -24,6 +24,7 @@ $animation: $timing-normal;
 
 #{$selector} {
   border-top: 1px solid color($--border-primary);
+  background-color: color($--background-alternative);
 
   &:last-child {
     border-bottom: 1px solid color($--border-primary);
@@ -50,7 +51,9 @@ $animation: $timing-normal;
     width: 100%;
     margin-bottom: $space-xs;
     padding: $space-sm $space-xs;
-    background-color: color(--background-base);
+    border: none;
+    border-color: color(--background-alternative);
+    background-color: color(--background-alternative);
 
     &::after {
       display: block;

@@ -1,0 +1,11 @@
+$selector: ".SearchUsers";
+
+#{$selector} {
+  display: grid;
+  gap: 10px;
+
+  &__search {
+    display: grid;
+    gap: 5px;
+  }
+}
