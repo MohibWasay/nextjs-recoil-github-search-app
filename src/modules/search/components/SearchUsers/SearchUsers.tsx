@@ -1,5 +1,6 @@
 import { create } from "@/helpers/createBem";
-import { useSearchUsers } from "@/modules/search";
+import { UserReposList, useSearchUsers } from "@/modules/search";
+import { Button } from "@/shared/components/Button";
 import { Collapsible } from "@/shared/components/Collapsible";
 import { Input } from "@/shared/components/Input";
 import { FC, useState } from "react";
@@ -10,28 +11,29 @@ const bem = create(styles, "SearchUsers");
 
 export const SearchUsers: FC = () => {
   const [query, setQuery] = useState("");
-  const { data: users } = useSearchUsers(query);
+  const { data: users, mutate } = useSearchUsers(query);
 
   return (
     <div className={bem()}>
       <div className={bem("search")}>
         <Input
           id="searchUsers"
+          onChange={({ target: { value } }) => setQuery(value)}
           name="search-users"
           placeholder="Search Users"
-          onChange={({ target: { value } }) => setQuery(value)}
         />
+
+        <Button variant="primary" onClick={() => mutate()}>
+          Search
+        </Button>
+
         {users.length ? <span>Showing users for {`"${query}"`}</span> : null}
       </div>
 
       <Collapsible>
-        {users?.map((user) => (
-          <Collapsible.Item
-            key={user.login}
-            value={user.login}
-            title={user.login}
-          >
-            This is a description
+        {users?.map(({ login }) => (
+          <Collapsible.Item key={login} value={login} title={login}>
+            <UserReposList username={login} />
           </Collapsible.Item>
         ))}
       </Collapsible>
