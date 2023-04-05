@@ -1,0 +1,240 @@
+/* stylelint-disable */
+/* prettier-ignore */
+
+// Properties
+// -----------------------------------------------------------------------------
+$font-family: (
+  "sans": var($--font-sans)
+);
+
+$font-size: (
+  "xs": var($--font-size-xs),
+  "sm": var($--font-size-sm),
+  "md": var($--font-size-md),
+  "base": var($--font-size-base),
+  "lg": var($--font-size-lg),
+  "xl": var($--font-size-xl),
+  "2xl": var($--font-size-2xl),
+  "3xl": var($--font-size-3xl),
+);
+
+$font-weight: (
+  "normal": var($--font-weight-normal),
+  "bold": var($--font-weight-bold),
+);
+
+$font-style: (
+  "italic": var($--font-style-italic),
+  "normal": var($--font-style-normal),
+);
+
+$font-spacing: (
+  "normal": var($--font-spacing-normal),
+  "wider": var($--font-spacing-wider),
+);
+
+$font-height: (
+  "none": var($--font-height-none),
+  "tight": var($--font-height-tight),
+  "snug": var($--font-height-snug),
+  "normal": var($--font-height-normal),
+  "relaxed": var($--font-height-relaxed),
+);
+
+$font-transform: (
+  "none": var($--font-transform-none),
+  "uppercase": var($--font-transform-uppercase),
+);
+
+// Tokens
+//
+// Each token can take a list of properties for each primitive value. The index
+// of a property is matching the breakpoint defined in the screens configuration
+// and needs at least one value. If there are more values than breakpoints, the
+// not matching values will be ignored. Example:
+//
+// Defined screens are: 'sm', 'md', 'lg', 'xl'
+// The font size of a token can change accordingly: 'size': ('base', 'lg', 'xl', '2xl')
+// -----------------------------------------------------------------------------
+$text-tokens: (
+  "base": (
+    "family": ("sans"),
+    "weight": ("normal"),
+    "size": ("base"),
+    "spacing": ("normal"),
+    "height": ("none"),
+    "style": ("normal"),
+    "transform": ("none"),
+  ),
+  "headline/3xl": (
+    "family": ("sans"),
+    "weight": ("bold"),
+    "size": ("lg", "xl", "2xl", "3xl"),
+    "spacing": ("normal"),
+    "height": ("snug", "snug", "none", "none"),
+    "style": ("normal"),
+    "transform": ("none"),
+  ),
+  "headline/2xl": (
+    "family": ("sans"),
+    "weight": ("bold"),
+    "size": ("lg", "lg", "xl", "2xl"),
+    "spacing": ("normal"),
+    "height": ("snug"),
+    "style": ("normal"),
+    "transform": ("none"),
+  ),
+  "headline/xl": (
+    "family": ("sans"),
+    "weight": ("bold"),
+    "size": ("lg", "lg", "xl", "xl"),
+    "spacing": ("normal"),
+    "height": ("snug"),
+    "style": ("normal"),
+    "transform": ("none"),
+  ),
+  "headline/lg": (
+    "family": ("sans"),
+    "weight": ("bold"),
+    "size": ("md", "md", "lg", "lg"),
+    "spacing": ("normal"),
+    "height": ("snug"),
+    "style": ("normal"),
+    "transform": ("none"),
+  ),
+  "headline/md": (
+    "family": ("sans"),
+    "weight": ("bold"),
+    "size": ("md"),
+    "spacing": ("normal"),
+    "height": ("snug"),
+    "style": ("normal"),
+    "transform": ("none"),
+  ),
+  "headline/sm": (
+    "family": ("sans"),
+    "weight": ("bold"),
+    "size": ("sm"),
+    "spacing": ("wider"),
+    "height": ("snug"),
+    "style": ("normal"),
+    "transform": ("none"),
+  ),
+  "headline/xs": (
+    "family": ("sans"),
+    "weight": ("bold"),
+    "size": ("xs"),
+    "spacing": ("wider"),
+    "height": ("snug"),
+    "style": ("normal"),
+    "transform": ("none"),
+  ),
+  "headline/faq": (
+    "family": ("sans"),
+    "weight": ("bold"),
+    "size": ("sm", "sm", "lg", "lg"),
+    "spacing": ("normal"),
+    "height": ("snug"),
+    "style": ("normal"),
+    "transform": ("none"),
+  ),
+  "headline/value-prop": (
+    "family": ("sans"),
+    "weight": ("bold"),
+    "size": ("sm", "sm", "lg", "lg"),
+    "spacing": ("normal"),
+    "height": ("snug"),
+    "style": ("normal"),
+    "transform": ("none"),
+  ),
+  "intro": (
+    "family": ("sans"),
+    "weight": ("normal"),
+    "size": ("sm", "sm", "md", "lg"),
+    "spacing": ("wider"),
+    "height": ("tight"),
+    "style": ("normal"),
+    "transform": ("none"),
+  ),
+  "copy": (
+    "family": ("sans"),
+    "weight": ("normal"),
+    "size": ("sm"),
+    "spacing": ("normal"),
+    "height": ("normal", "normal", "snug", "snug"),
+    "style": ("normal"),
+    "transform": ("none"),
+  ),
+  "SEO-copy": (
+    "family": ("sans"),
+    "weight": ("normal"),
+    "size": ("sm", "sm", "md", "md"),
+    "spacing": ("wider"),
+    "height": ("normal", "normal", "relaxed", "relaxed"),
+    "style": ("normal"),
+    "transform": ("none"),
+  ),
+  "copy-bold": (
+    "family": ("sans"),
+    "weight": ("bold"),
+    "size": ("sm"),
+    "spacing": ("wider"),
+    "height": ("normal", "normal", "snug", "snug"),
+    "style": ("normal"),
+    "transform": ("none"),
+  ),
+  "SEO-copy-bold": (
+    "family": ("sans"),
+    "weight": ("bold"),
+    "size": ("sm", "sm", "sm", "sm"),
+    "spacing": ("normal"),
+    "height": ("normal", "normal", "relaxed", "relaxed"),
+    "style": ("normal"),
+    "transform": ("none"),
+  ),
+  "meta": (
+    "family": ("sans"),
+    "weight": ("normal"),
+    "size": ("xs"),
+    "spacing": ("wider"),
+    "height": ("snug"),
+    "style": ("normal"),
+    "transform": ("none"),
+  ),
+  "rating": (
+    "family": ("sans"),
+    "weight": ("bold"),
+    "size": ("xl"),
+    "spacing": ("normal"),
+    "height": ("snug"),
+    "style": ("normal"),
+    "transform": ("none"),
+  ),
+  "button/xs": (
+    "family": ("sans"),
+    "weight": ("bold"),
+    "size": ("xs"),
+    "spacing": ("normal"),
+    "height": ("normal"),
+    "style": ("normal"),
+    "transform": ("none"),
+  ),
+  "button/sm": (
+    "family": ("sans"),
+    "weight": ("bold"),
+    "size": ("sm"),
+    "spacing": ("normal"),
+    "height": ("normal"),
+    "style": ("normal"),
+    "transform": ("none"),
+  ),
+  "button/lg": (
+    "family": ("sans"),
+    "weight": ("bold"),
+    "size": ("md"),
+    "spacing": ("normal"),
+    "height": ("normal"),
+    "style": ("normal"),
+    "transform": ("none"),
+  ),
+);

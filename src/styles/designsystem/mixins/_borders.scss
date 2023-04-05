@@ -1,0 +1,27 @@
+/*
+Mixin for setting border and border radius
+*/
+@mixin border-with-radius ($border-size: 0, $border-color: null, $border-radius) {
+  border-radius: $border-radius;
+
+  @if $border-color !=null {
+    border: $border-size solid color($border-color);
+  }
+
+  @else {
+    border: $border-size;
+  }
+}
+
+/*
+Mixin for setting border only
+*/
+@mixin border ($border-size, $border-color: null) {
+  @if $border-color !=null {
+    border: $border-size solid color($border-color);
+  }
+
+  @else {
+    border: $border-size;
+  }
+}

@@ -1,0 +1,49 @@
+$selector: ".Input";
+$input-height: 56px;
+
+#{$selector} {
+  &__field {
+    @include text("copy");
+    @include border(none);
+    flex: 1;
+    width: 100%;
+    padding: $space-md $space-lg;
+    background-color: transparent;
+
+    &--has-error {
+      color: color($--field-error);
+    }
+
+    &--is-disabled {
+      pointer-events: none;
+    }
+  }
+
+  &__right-icon,
+  &__right-text-wrapper,
+  &__info-tooltip,
+  &__loader,
+  &__error,
+  &__success,
+  &__button {
+    width: 24px;
+    height: 24px;
+    margin: $space-sm $space-md;
+    text-align: center;
+    vertical-align: middle;
+
+    &:disabled {
+      @include hidden();
+    }
+
+    &__icon {
+      align-self: flex-end;
+      fill: color($--icon-tint);
+    }
+
+    &__text {
+      @include text("copy");
+      color: color($--text-meta);
+    }
+  }
+}

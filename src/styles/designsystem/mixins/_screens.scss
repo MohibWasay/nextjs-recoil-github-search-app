@@ -1,0 +1,28 @@
+/**
+ * Mixin that renders a media query that target screens that are larger than the
+ * given size.
+ */
+@mixin screenLargerThan($from) {
+  @media screen and (min-width: $from) {
+    @content;
+  }
+}
+
+/**
+ * Mixin that renders a media query that target screens that are smaller than the
+ * given size.
+ */
+@mixin screenSmallerThan($to) {
+  @media screen and (max-width: $to) {
+    @content;
+  }
+}
+
+/**
+ * Mixin that renders a media query that target screens in between the given range.
+ */
+@mixin screenBetween($from, $to) {
+  @media screen and (min-width: $from) and (max-width: $to) {
+    @content;
+  }
+}

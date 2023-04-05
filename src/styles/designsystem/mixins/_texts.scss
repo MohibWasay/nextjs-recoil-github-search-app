@@ -1,0 +1,56 @@
+@mixin _text-properties($key, $at) {
+  $token: map-get($text-tokens, $key);
+  $definitions: (
+    ("font-weight", $font-weight, "weight"),
+    ("font-size", $font-size, "size"),
+    ("font-family", $font-family, "family"),
+    ("font-style", $font-style, "style"),
+    ("line-height", $font-height, "height"),
+    ("letter-spacing", $font-spacing, "spacing"),
+    ("text-transform", $font-transform, "transform"),
+  );
+
+  /* Iterate over all properties from the defintions and write prop/value pairs
+   * if value changes regarding the previous position ($at): */
+  @each $def in $definitions {
+    $property: nth($def, 1);
+    $source: nth($def, 2);
+    $name: nth($def, 3);
+    $values: map-get($token, $name);
+    $value: null;
+    $prev: null;
+
+    @if ($at <= length($values)) {
+      $value: nth($values, $at);
+
+      @if ($at - 1 > 0) {
+        $prev: nth($values, $at - 1);
+      }
+    }
+
+    @if ($value != $prev) {
+      #{$property}: map-get($source, $value);
+    }
+  }
+}
+
+/**
+ * Returns a text token by a given key. If a token consists of properties based
+ * on different screensizes, they will result in media queries that only apply
+ * the changes.
+ */
+@mixin text($key) {
+  $index: 1;
+
+  @each $breakpoint in $screen-breakpoints {
+    @if ($index == 1) {
+      @include _text-properties($key, $index);
+    } @else {
+      @include screenLargerThan($breakpoint) {
+        @include _text-properties($key, $index);
+      }
+    }
+
+    $index: $index + 1;
+  }
+}

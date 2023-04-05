@@ -1,0 +1,16 @@
+// This is an entry point that registers all available configurations. This file
+// is imported by next.config.js. All referenced configurations are therefore
+// available in any SASS file.
+@import "config/colors-variables";
+@import "config/colors-main";
+@import "config/color";
+@import "config/elevation";
+@import "config/icons";
+@import "config/layers";
+@import "config/screens";
+@import "config/spaces";
+@import "config/texts-variables";
+@import "config/texts-huk24";
+@import "config/texts-hukcoburg";
+@import "config/texts";
+@import "config/timings";

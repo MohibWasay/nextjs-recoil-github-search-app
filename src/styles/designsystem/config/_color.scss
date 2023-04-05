@@ -1,0 +1,11 @@
+// Color function that changes hardcoded into CSS-variable
+// It need to be here (and not in functions folder) because
+// of NextJS file loading order
+// -----------------------------------------------------------------------------
+@function color($key, $fallback: null, $map: $theme-map-colors-main) {
+  @if not map-has-key($map, $key) {
+    @error "key: '#{$key}', is not a key in map: #{$map}";
+  }
+
+  @return var($key, $fallback);
+}

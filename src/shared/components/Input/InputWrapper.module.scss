@@ -1,0 +1,41 @@
+$selector: ".InputWrapper";
+
+#{$selector} {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  &__label {
+    @include text("meta");
+    margin-bottom: $space-sm;
+    font-weight: normal;
+
+    &--is-disabled {
+      color: color($--text-disabled);
+    }
+
+    &--has-error {
+      color: color($--text-error);
+    }
+  }
+
+  &__field-wrapper {
+    @include border-with-radius(1px, $--field-enabled, 0px);
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    &--is-disabled {
+      color: color($--text-disabled);
+      border-color: color($--field-disabled);
+    }
+
+    &--has-error {
+      border-color: color($--field-error);
+    }
+
+    &--is-focused {
+      border-color: color($--field-focused);
+    }
+  }
+}

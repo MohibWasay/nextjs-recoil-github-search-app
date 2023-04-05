@@ -1,0 +1,6 @@
+$selector: ".InputError";
+
+#{$selector} {
+  @include text("meta");
+  color: color($--text-error);
+}

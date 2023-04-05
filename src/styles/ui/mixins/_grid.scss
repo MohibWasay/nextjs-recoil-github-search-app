@@ -1,0 +1,73 @@
+// The number of grid columns:
+$grid-columns-xs: 4;
+$grid-columns-sm: 4;
+$grid-columns-md: 12;
+$grid-columns-lg: 12;
+$grid-columns-xl: 12;
+
+$grid-columns: ($grid-columns-xs, $grid-columns-sm, $grid-columns-md, $grid-columns-lg, $grid-columns-xl);
+$grid-gutters: ($space-md, $space-md, $space-lg, $space-xl, $space-xl);
+
+/**
+ * Specifies the outer row of columns for all contents across breakpoints.
+ */
+
+@mixin grid() {
+  display: flex;
+  flex-wrap: wrap;
+
+  $index: 1;
+
+  @each $breakpoint in $screen-breakpoints {
+    $gutter: nth($grid-gutters, $index);
+
+    @if ($index == 1) {
+      gap: $gutter;
+    }
+    @else {
+      @include screenLargerThan($breakpoint) {
+        gap: $gutter;
+      }
+    }
+
+    $index: $index + 1;
+  }
+}
+
+/**
+ * Specifies the grid columns. Pass the amount of columns for each breakpoint or use the default.
+ */
+
+@mixin column(
+  $size-xs: $grid-columns-sm,
+  $size-sm: $grid-columns-sm,
+  $size-md: $grid-columns-md,
+  $size-lg: $grid-columns-lg,
+  $size-xl: $grid-columns-xl
+) {
+
+  $sizes: ($size-xs, $size-sm, $size-md, $size-lg, $size-xl);
+
+  $index: 1;
+
+  @each $breakpoint in $screen-breakpoints {
+    $total-columns: nth($grid-columns, $index);
+    $size: nth($sizes, $index);
+    $gutter: nth($grid-gutters, $index);
+
+    $actual-columns: $total-columns / $size;
+    $gutters-number: $actual-columns - 1;
+    $width: calc($size / $total-columns * 100% - calc($gutters-number * $gutter / $actual-columns));
+
+    @if ($index == 1) {
+      width: $width;
+    }
+    @else {
+      @include screenLargerThan($breakpoint) {
+        width: $width;
+      }
+    }
+
+    $index: $index + 1;
+  }
+}

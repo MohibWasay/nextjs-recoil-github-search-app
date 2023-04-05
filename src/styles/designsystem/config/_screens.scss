@@ -1,0 +1,24 @@
+// The named breakpoints:
+$screen-xs: 0;
+$screen-sm: 480px;
+$screen-md: 768px;
+$screen-lg: 1024px;
+$screen-xl: 1440px;
+
+// All screen breakpoints. Ensure that they are sorted by their values (mobile first)!
+$screen-breakpoints: ($screen-xs, $screen-sm, $screen-md, $screen-lg, $screen-xl);
+
+// All layout "margins" (see design grid specifications, no technical CSS margins)
+// across breakpoints. Ensure that they are sorted accordingly to the defined
+// $screen-breakpoints.
+$screen-offsets: (16px, 16px, 40px, 64px, 120px);
+
+// The maximum size that contents should grow inside the layout.
+$screen-max-contents-width: 1440px;
+
+// TODO: These are temporary tokens and should be replaced with grid system (refer to HAG-1009 in Figma)
+$screen-desktop-width-sm: 384px;
+$screen-desktop-width-md: 486px;
+$screen-desktop-width-lg: 588px;
+$screen-desktop-width-xl: 792px;
+$screen-desktop-width-2xl: 896px;
