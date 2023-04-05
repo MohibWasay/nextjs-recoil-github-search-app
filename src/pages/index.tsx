@@ -1,15 +1,5 @@
-import { Input } from "@/shared/components/Input";
+import { SearchUsers } from "@/modules/search";
 
 export default function Main() {
-  return (
-    <div>
-      <Input
-        id=""
-        name=""
-        type="text"
-        placeholder="Search Users"
-        onChange={() => {}}
-      />
-    </div>
-  );
+  return <SearchUsers />;
 }
