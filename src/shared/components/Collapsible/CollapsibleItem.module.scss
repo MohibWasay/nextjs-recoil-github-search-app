@@ -1,0 +1,72 @@
+$selector: ".CollapsibleItem";
+
+$animation: $timing-normal;
+
+@keyframes slideDown {
+  from {
+    max-height: 0;
+  }
+
+  to {
+    max-height: var(--radix-collapsible-content-height);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    max-height: var(--radix-collapsible-content-height);
+  }
+
+  to {
+    max-height: 0;
+  }
+}
+
+#{$selector} {
+  border-top: 1px solid color($--border-primary);
+
+  &:last-child {
+    border-bottom: 1px solid color($--border-primary);
+  }
+
+  &__content {
+    background-color: color(--background-base);
+
+    &[data-state="closed"] {
+      overflow: hidden;
+      animation: slideUp $animation;
+    }
+
+    &[data-state="open"] {
+      animation: slideDown $animation;
+    }
+  }
+
+  &__header {
+    @include text("copy");
+    display: grid;
+    grid-template-columns: 1fr $space-xl;
+    align-items: center;
+    width: 100%;
+    margin-bottom: $space-xs;
+    padding: $space-sm $space-xs;
+    background-color: color(--background-base);
+
+    &::after {
+      display: block;
+      width: 22px;
+      height: 22px;
+      margin-left: auto;
+      background: url("../../../assets/icons/arrow-down.svg") center center no-repeat;
+      transition-duration: 0.5s;
+      content: "";
+      pointer-events: none;
+    }
+
+    &[data-state="open"] {
+      &::after {
+        transform: rotate(-180deg);
+      }
+    }
+  }
+}

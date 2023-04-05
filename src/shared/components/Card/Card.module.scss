@@ -1,0 +1,57 @@
+$selector: ".Card";
+
+#{$selector} {
+  position: relative;
+  z-index: 0;
+  margin: $space-md 0;
+  border-radius: 6px;
+
+  &--no-margin {
+    margin: 0;
+  }
+
+  &--is-primary {
+    background: color($--background-base);
+
+    &::before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+
+      @include border-with-radius(1px, $--border-primary, 6px);
+      content: "";
+      speak: none;
+    }
+
+    &#{$selector}--is-selected::before {
+      @include border(2px, $--border-selected);
+    }
+  }
+
+  &--is-secondary {
+    overflow: hidden;
+    background-color: color($--background-primary);
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      content: "";
+      speak: none;
+    }
+
+    &#{$selector}--is-selected::before {
+      background-color: color($--background-base);
+    }
+  }
+
+  &--is-info {
+    overflow: hidden;
+    background-color: color($--background-secondary);
+  }
+}
