@@ -3,15 +3,15 @@ import { UserReposList, useSearchUsers } from "@/modules/search";
 import { Button } from "@/shared/components/Button";
 import { Collapsible } from "@/shared/components/Collapsible";
 import { Input } from "@/shared/components/Input";
-import { FC, useState } from "react";
+import { FC, useRef } from "react";
 
 import styles from "./SearchUsers.module.scss";
 
 const bem = create(styles, "SearchUsers");
 
 export const SearchUsers: FC = () => {
-  const [query, setQuery] = useState("");
-  const { data: users, mutate } = useSearchUsers(query);
+  const { query, setQuery, users, onSubmit } = useSearchUsers();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   return (
     <div className={bem()}>
@@ -19,11 +19,14 @@ export const SearchUsers: FC = () => {
         <Input
           id="searchUsers"
           onChange={({ target: { value } }) => setQuery(value)}
-          name="search-users"
+          ref={inputRef}
           placeholder="Search Users"
         />
-
-        <Button variant="primary" onClick={() => mutate()}>
+        <Button
+          variant="primary"
+          disabled={!query.length}
+          onClick={() => onSubmit()}
+        >
           Search
         </Button>
       </div>
@@ -31,9 +34,9 @@ export const SearchUsers: FC = () => {
       {users.length ? <span>Showing users for {`"${query}"`}</span> : null}
 
       <Collapsible>
-        {users?.map(({ login }) => (
-          <Collapsible.Item key={login} value={login} title={login}>
-            <UserReposList username={login} />
+        {users?.map(({ username }) => (
+          <Collapsible.Item key={username} value={username} title={username}>
+            <UserReposList username={username} />
           </Collapsible.Item>
         ))}
       </Collapsible>

@@ -1,11 +1,11 @@
 import { FC } from "react";
-import { useUserReposList } from "@/modules/search";
-import { Card } from "@/shared/components/Card";
+import { userRepos, useUserReposList } from "@/modules/search";
 import { create } from "@/helpers/createBem";
 
 import styles from "./UserReposList.module.scss";
 import { RenderIf } from "@/shared/components/RenderIf/RenderIf";
 import { RepoItemCard } from "../RepoItemCard/RepoItemCard";
+import { useRecoilValue } from "recoil";
 
 const bem = create(styles, "UserReposList");
 
@@ -14,7 +14,8 @@ type UserReposList = {
 };
 
 export const UserReposList: FC<UserReposList> = ({ username }) => {
-  const { data: repos, loading } = useUserReposList(username);
+  const { loading } = useUserReposList(username);
+  const repos = useRecoilValue(userRepos({ username }));
 
   if (loading) {
     return <p>Loading...</p>;
@@ -22,12 +23,12 @@ export const UserReposList: FC<UserReposList> = ({ username }) => {
 
   return (
     <div className={bem()}>
-      <RenderIf condition={repos?.length === 0}>
+      <RenderIf condition={repos.length === 0}>
         <span>{`'${username}'`}&apos;s has no public repositories</span>
       </RenderIf>
 
       {repos?.map?.((repo) => (
-        <RepoItemCard key={repo.name} repo={repo} />
+        <RepoItemCard key={repo.name} username={username} repo={repo.name} />
       ))}
     </div>
   );

@@ -1,24 +1,47 @@
 import { SearchUserResponse } from "@/clients/octokit/types";
 import { performRequest } from "@/helpers/performRequest";
-import useDebounce from "@/shared/hooks/useDebounce";
-import { KeyedMutator } from "swr";
-import useSWR from "swr/immutable";
+import { atom, selector, useRecoilState, useRecoilValue } from "recoil";
 
-const searchUsers = async (path: string) => {
-  return await performRequest<SearchUserResponse>({ path });
+export const userQueryString = atom<string>({
+  key: "userQueryString",
+  default: "",
+});
+
+export type SearchUserItem = {
+  username: string;
 };
 
-type UseSearchUsersHook = (query: string) => {
-  data: SearchUserResponse["items"];
-  mutate: KeyedMutator<SearchUserResponse>;
+export const searchUserData = atom<SearchUserResponse["items"]>({
+  key: "searchUserData",
+  default: [],
+});
+
+export const searchUserDataSelector = selector<SearchUserItem[]>({
+  key: "searchUserDataSelector",
+  get: ({ get }) => {
+    const users = get(searchUserData);
+    return users.map((user) => ({ username: user.login }));
+  },
+});
+
+type UseSearchUsersHook = () => {
+  query: string;
+  setQuery: (value: string) => void;
+  onSubmit: () => void;
+  users: SearchUserItem[];
 };
 
-export const useSearchUsers: UseSearchUsersHook = (query: string) => {
-  const debouncedQuery = useDebounce(query, 500);
-  const { data, mutate } = useSWR(
-    debouncedQuery ? `/api/search/users?query=${debouncedQuery}` : null,
-    searchUsers,
-  );
+export const useSearchUsers: UseSearchUsersHook = () => {
+  const [query, setQuery] = useRecoilState(userQueryString);
+  const [, setUsers] = useRecoilState(searchUserData);
+  const users = useRecoilValue(searchUserDataSelector);
 
-  return { data: data?.items ?? [], mutate };
+  const onSubmit = async () => {
+    const response = await performRequest<SearchUserResponse>({
+      path: `/api/search/users?query=${query}`,
+    });
+    setUsers(response.items);
+  };
+
+  return { query, users, setQuery, onSubmit };
 };

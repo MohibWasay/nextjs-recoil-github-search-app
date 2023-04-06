@@ -1,29 +1,31 @@
-import { ListUserReposResponse } from "@/clients/octokit/types";
 import { create } from "@/helpers/createBem";
 import { Card } from "@/shared/components/Card";
 import { FC } from "react";
+import { useRecoilValue } from "recoil";
+import { userRepoDataSelector } from "../../hooks/useUserReposList/useUserReposList";
+
 import styles from "./RepoItemCard.module.scss";
 
 const bem = create(styles, "RepoItemCard");
 
 type RepoItemCard = {
-  repo: ListUserReposResponse["0"];
+  repo: string;
+  username: string;
 };
 
-export const RepoItemCard: FC<RepoItemCard> = ({ repo }) => {
+export const RepoItemCard: FC<RepoItemCard> = ({ repo, username }) => {
+  const { name, starsCount, description } = useRecoilValue(
+    userRepoDataSelector({ username, repo })
+  )!;
+
   return (
     <Card className={bem()} variant="primary">
       <div className={bem("heading")}>
-        <span className={bem("itle")}>{repo.name}</span>
-        <span>
-          {Intl.NumberFormat("en-GB").format(repo.stargazers_count ?? 0)} ★
-        </span>
+        <span className={bem("title")}>{name}</span>
+        <span>{starsCount} ★</span>
       </div>
-
-      <div>
-        <span className={bem("description")}>
-          {repo.description ?? "[No description available]"}
-        </span>
+      <div className={bem("details")}>
+        <span className={bem("description")}>{description}</span>
       </div>
     </Card>
   );

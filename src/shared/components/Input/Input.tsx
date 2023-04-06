@@ -21,7 +21,7 @@ export type InputButtonProps = {
 
 export type InputProps = {
   id: string;
-  name: string;
+  name?: string;
   type?: "text" | "password" | "number" | "email" | "tel";
   error?: string;
   loading?: boolean;
