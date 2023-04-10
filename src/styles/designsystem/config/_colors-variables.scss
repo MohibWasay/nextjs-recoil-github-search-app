@@ -3,20 +3,10 @@
 
 // BACKGROUND
 $--background-base: --background-base;
-$--background-base-dark: --background-base-dark;
 $--background-primary: --background-primary;
 $--background-secondary: --background-secondary;
-$--background-tertiary: --background-tertiary;
 $--background-alternative: --background-alternative;
-$--background-emphasized: --background-emphasized;
-$--background-footer: --background-footer;
-$--background-tint: --background-tint;
-$--background-success: --background-success;
-$--background-notification-base-dark: --background-notification-base-dark;
 $--background-notification-success: --background-notification-success;
-$--background-notification-error: --background-notification-error;
-$--background-icon: --background-icon;
-$--background-dropdown-hover: --background-dropdown-hover;
 
 // TEXT
 $--text-base: --text-base;
@@ -30,25 +20,12 @@ $--text-success: --text-success;
 $--text-disabled: --text-disabled;
 $--text-meta: --text-meta;
 
-// INTERACT
-$--interact-selected-enabled: --interact-selected-enabled;
-$--interact-selected-hover: --interact-selected-hover;
-$--interact-selected-pressed: --interact-selected-pressed;
-$--interact-selected-focused: --interact-selected-focused;
-$--interact-selected-disabled: --interact-selected-disabled;
-$--interact-unselected-enabled: --interact-unselected-enabled;
-$--interact-unselected-hover: --interact-unselected-hover;
-$--interact-unselected-pressed: --interact-unselected-pressed;
-$--interact-unselected-focused: --interact-unselected-focused;
-$--interact-unselected-disabled: --interact-unselected-disabled;
-
 // BUTTONS
 $--button-enabled-primary: --button-enabled-primary;
 $--button-enabled-secondary: --button-enabled-secondary;
 $--button-disabled: --button-disabled;
 $--button-hover: --button-hover;
 $--button-pressed: --button-pressed;
-$--button-border-focused: --button-border-focused;
 $--button-primary-text: --button-primary-text;
 $--button-primary-text-disabled: --button-primary-text-disabled;
 $--button-secondary-text: --button-secondary-text;
@@ -65,8 +42,6 @@ $--button-secondary-pressed: --button-secondary-pressed;
 // FIELDS
 $--field-enabled: --field-enabled;
 $--field-disabled: --field-disabled;
-$--field-hover: --field-hover;
-$--field-pressed: --field-pressed;
 $--field-focused: --field-focused;
 $--field-error: --field-error;
 $--field-success: --field-successs;
@@ -89,20 +64,7 @@ $--border-base: --border-base;
 $--border-primary: --border-primary;
 $--border-secondary: --border-secondary;
 $--border-selected: --border-selected;
-$--border-notification-basic: --border-notification-basic;
-$--border-notification-success: --border-notification-success;
-$--border-notification-error: --border-notification-error;
 
 // ICONS
-$--icon-default: --icon-default;
-$--icon-base: --icon-base;
-$--icon-alternative: --icon-alternative;
-$--icon-inverted: --icon-inverted;
-$--icon-tint: --icon-tint;
-$--icon-primary-success: --icon-primary-success;
-$--icon-primary-error: --icon-primary-error;
-$--icon-emphasized: --icon-emphasized;
 $--icon-tertiary: --icon-tertiary;
-$--icon-tertiary-inverted: --icon-tertiary-inverted;
-$--icon-rating: --icon-rating;
-$--icon-shade: --icon-shade;
+$--icon-tint: --icon-tint;

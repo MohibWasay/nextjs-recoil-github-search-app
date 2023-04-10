@@ -3,20 +3,11 @@
 $theme-map-colors-main: (
   /* BACKGROUND */
   $--background-base: #ffffff,
-  $--background-base-dark: #35444c,
   $--background-primary: #fdd319,
   $--background-secondary: #f7f7f8,
-  $--background-tertiary: #fdd319,
   $--background-alternative: #f3f3f3,
-  $--background-emphasized: #fef3c2,
-  $--background-footer: #ffffff,
-  $--background-tint: #e0f7f8,
-  $--background-success: #e0ffe1,
-  $--background-notification-base-dark: #35444c,
   $--background-notification-success: #e0ffe1,
-  $--background-notification-error: #ffe9ec,
-  $--background-icon: #eef0f1,
-  $--background-dropdown-hover: #eef0f1,
+
   /* TEXT */
   $--text-base: #35444c,
   $--text-alternate: #68747a,
@@ -28,24 +19,13 @@ $theme-map-colors-main: (
   $--text-error: #c92a2a,
   $--text-disabled: #808a90,
   $--text-meta: #97a0a5,
-  /* INTERACT */
-  $--interact-selected-enabled: #fdd319,
-  $--interact-selected-hover: #fdd319,
-  $--interact-selected-pressed: #ffbd0a,
-  $--interact-selected-focused: #fdd319,
-  $--interact-selected-disabled: #e7e9ea,
-  $--interact-unselected-enabled: #b0b6ba,
-  $--interact-unselected-hover: #97a0a5,
-  $--interact-unselected-pressed: #808a90,
-  $--interact-unselected-focused: #0395a1,
-  $--interact-unselected-disabled: #e7e9ea,
+
   /* BUTTONS */
   $--button-enabled-primary: #14b9c8,
   $--button-enabled-secondary: #14b9c8,
   $--button-disabled: #cbcfd2,
   $--button-hover: #0395a1,
   $--button-pressed: #055e5f,
-  $--button-border-focused: #0395a1,
   $--button-primary-text: #ffffff,
   $--button-primary-text-disabled: #808a90,
   $--button-secondary-text: #35444c,
@@ -54,14 +34,14 @@ $theme-map-colors-main: (
   $--button-secondary-border-hover: #35444c,
   $--button-secondary-border-pressed: #000000,
   $--button-tertiary-text: #14b9c8,
+
   /* NOT IN FIGMA */
   $--button-secondary-hover: #263238,
   $--button-secondary-pressed: #263238,
+  
   /* FIELDS */
   $--field-enabled: #b0b6ba,
   $--field-disabled: #cbcfd2,
-  $--field-hover: #808a90,
-  $--field-pressed: #35444c,
   $--field-focused: #0395a1,
   $--field-error: #c92a2a,
   $--field-success: #00bf3b,
@@ -81,20 +61,6 @@ $theme-map-colors-main: (
   $--border-primary: #cbcfd2,
   $--border-secondary: #e7e9ea,
   $--border-selected: #fdd319,
-  $--border-notification-basic: #000000,
-  $--border-notification-success: #d1f1d2,
-  $--border-notification-error: #f3dadd,
   /* ICON */
-  $--icon-default: #b0b6ba,
-  $--icon-base: #35444c,
-  $--icon-alternative: #68747a,
-  $--icon-inverted: #ffffff,
-  $--icon-tertiary: #35444c,
-  $--icon-tertiary-inverted: #ffffff,
   $--icon-tint: #14b9c8,
-  $--icon-primary-success: #00bf3b,
-  $--icon-primary-error: #c92a2a,
-  $--icon-emphasized: #fdd319,
-  $--icon-rating: #faba39,
-  $--icon-shade: #263238,
 );
