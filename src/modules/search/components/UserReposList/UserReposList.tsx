@@ -22,7 +22,7 @@ export const UserReposList: FC<UserReposList> = ({ username }) => {
   }
 
   return (
-    <div className={bem()}>
+    <div className={bem()} data-testid="usersRepoList">
       <RenderIf condition={repos.length === 0}>
         <span>{`'${username}'`}&apos;s has no public repositories</span>
       </RenderIf>

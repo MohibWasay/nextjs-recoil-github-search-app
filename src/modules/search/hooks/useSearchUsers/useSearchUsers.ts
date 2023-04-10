@@ -38,7 +38,7 @@ export const useSearchUsers: UseSearchUsersHook = () => {
 
   const onSubmit = async () => {
     const response = await performRequest<SearchUserResponse>({
-      path: `/api/search/users?query=${query}`,
+      path: `/api/search/users`,
     });
     setUsers(response.items);
   };

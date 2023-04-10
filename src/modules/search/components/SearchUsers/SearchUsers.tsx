@@ -20,11 +20,13 @@ export const SearchUsers: FC = () => {
           id="searchUsers"
           onChange={({ target: { value } }) => setQuery(value)}
           ref={inputRef}
+          data-testid="searchUsersInput"
           placeholder="Search Users"
         />
         <Button
           variant="primary"
           disabled={!query.length}
+          data-testid="searchUsersButton"
           onClick={() => onSubmit()}
         >
           Search
