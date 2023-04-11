@@ -21,11 +21,23 @@ export const RepoItemCard: FC<RepoItemCard> = ({ repo, username }) => {
   return (
     <Card className={bem()} variant="primary">
       <div className={bem("heading")}>
-        <span className={bem("title")}>{name}</span>
-        <span>{starsCount} ★</span>
+        <span
+          className={bem("title")}
+          data-testid={`repoCardName[${username}]`}
+        >
+          {name}
+        </span>
+        <span data-testid={`repoCardStarsCount[${username}]`}>
+          {starsCount} ★
+        </span>
       </div>
       <div className={bem("details")}>
-        <span className={bem("description")}>{description}</span>
+        <span
+          data-testid={`repoCardDescription[${username}]`}
+          className={bem("description")}
+        >
+          {description}
+        </span>
       </div>
     </Card>
   );

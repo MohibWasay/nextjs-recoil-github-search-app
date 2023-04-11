@@ -1,7 +1,7 @@
 import { ListUserReposResponse } from "@/clients/octokit/types";
 import { performRequest } from "@/helpers/performRequest";
 import { useEffect } from "react";
-import { atom, selectorFamily, useRecoilState } from "recoil";
+import { atom, selectorFamily, useRecoilState, useRecoilValue } from "recoil";
 import useSWR from "swr/immutable";
 
 const listUserRepos = async (path: string) => {
@@ -17,9 +17,11 @@ export const listUserReposData = atom<{ [key: string]: ListUserReposResponse }>(
   }
 );
 
+export type ListUserReposParams = { username: string };
+
 export const userRepos = selectorFamily<
   ListUserReposResponse,
-  { username: string }
+  ListUserReposParams
 >({
   key: "userRepos",
   get:
@@ -34,8 +36,8 @@ export type UserRepoData = Pick<
 > & { starsCount: string };
 
 export type UserRepoParams = {
-  username: string;
   repo: string;
+  username: string;
 };
 
 export const userRepoDataSelector = selectorFamily<
@@ -46,22 +48,24 @@ export const userRepoDataSelector = selectorFamily<
   get:
     (params) =>
     ({ get }) => {
-      const userRepos = get(listUserReposData)[params.username];
-      const repo = userRepos.find((repo) => repo.name === params.repo);
-
-      if (!repo) return null;
-
-      return {
-        name: repo.name,
-        description: repo.description,
-        starsCount: Intl.NumberFormat("en-GB").format(
-          repo.stargazers_count ?? 0
-        ),
-      };
+      const userRepos = get(listUserReposData)[params.username] ?? [];
+      const repo = userRepos.find(({ name }) => name === params.repo);
+      return !repo
+        ? null
+        : {
+            name: repo.name,
+            description: repo.description,
+            starsCount: Intl.NumberFormat("en-GB").format(
+              repo.stargazers_count ?? 0
+            ),
+          };
     },
 });
 
-type UseUserReposListHook = (query: string) => { loading: boolean };
+type UseUserReposListHook = (query: string) => {
+  loading: boolean;
+  repos: ListUserReposResponse;
+};
 
 export const useUserReposList: UseUserReposListHook = (username: string) => {
   const [usersRepoData, setUsersReposData] = useRecoilState(listUserReposData);
@@ -69,6 +73,7 @@ export const useUserReposList: UseUserReposListHook = (username: string) => {
     usersRepoData[username] ? null : `/api/owner/${username}/repos`,
     listUserRepos
   );
+  const repos = useRecoilValue(userRepos({ username }));
 
   useEffect(() => {
     if (data && !usersRepoData[username]) {
@@ -76,5 +81,5 @@ export const useUserReposList: UseUserReposListHook = (username: string) => {
     }
   }, [data, setUsersReposData, usersRepoData, username]);
 
-  return { loading };
+  return { loading, repos };
 };
